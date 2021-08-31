@@ -1,0 +1,8 @@
+export const LISTING_ROUTE = 'listing'
+export const USER_ROUTE = 'user'
+//export const SERVER_URL = 'https://server-audit-1.herokuapp.com'
+export const SERVER_URL = 'https://theauditbid.herokuapp.com'
+export const NOLOGO = 'https://www.medtalks.ch/images/user-placeholder.jpg'
+export const userId = 'HU$%OP#*G&@#HOG*(&#G(I$v23'
+export const requestListingLink = 'https://google.com'
+export const MAKER_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGYzODk0MTdiYzc3YTg2NTAxNjMyMGQiLCJpYXQiOjE2Mjg5ODQ5MzB9.IOmCdbtNRBe_WR1rqzxe6rqtC7lowxT1ct3gwAv2KSg'

@@ -1,0 +1,72 @@
+.hireModal-inner {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    margin: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0,0,0,0.57);
+    z-index: 20;
+
+}
+.hireModal-window {
+    max-width: 700px;
+    width: 90vh;
+    height: 290px;
+    border: 10px solid #4EC9B0;
+    background: #000;
+    position: relative;
+}
+.hireModal-confirmBtn, .hireModal-cancelBtn {
+    width: 159px;
+    height: 58px;
+    background: #000;
+    border: 1px solid #707070;
+    cursor: pointer;
+    font-size: 20px;
+}
+.hireModal-confirmBtn:hover, .hireModal-cancelBtn:hover {
+    background: #007ACC;
+}
+.hireModal-closeBtn{
+    position: absolute;
+    top: 11px;
+    right: 17px;
+    color: #707070;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+}
+.hireModal-message {
+    font-size: 20px;
+    width: 100%;
+    max-width: 516px;
+    margin: 30px auto 70px;
+    text-align: center;
+}
+.hireModal-btns{
+    margin: 0 auto;
+    max-width: 516px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.hireModal-socials{
+    width: 100%;
+    max-width: 516px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+.hireModal-socials a {
+    margin-right: 15px;
+}
+.hireModal-socials a:last-child {
+    margin-right: 0px;
+}

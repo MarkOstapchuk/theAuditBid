@@ -1,0 +1,31 @@
+.NotificationSuccess,.NotificationError{
+    width: 429px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 50px;
+    z-index: 15;
+    right: 50px;
+}
+.NotificationSuccess div,.NotificationError div {
+    font-size: 23px;
+}
+.NotificationSuccess button,.NotificationError button {
+    position: absolute;
+    top: -6px;
+    right: 7px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    border: none;
+    background: none;
+    outline: none;
+}
+.NotificationSuccess {
+    background: #6CC744;
+}
+.NotificationError {
+    background: #FF3333;
+}

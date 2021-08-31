@@ -1,0 +1,134 @@
+/*---------header--------*/
+
+.header{
+    padding: 70px 93px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-logo {
+    font-size: 35px;
+}
+.burger-menu {
+    width: 62px;
+    height: 39px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.burger-menu.active {
+    display: block;
+    position: relative;
+}
+.burger-menu.active > .burger-menu-button__1 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    transform-origin: center;
+}
+.burger-menu.active .burger-menu-button__2 {
+    opacity: 0;
+}
+.burger-menu.active > .burger-menu-button__3 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    transform-origin: center;
+}
+.burger-menu-button{
+    width: 100%;
+    height: 5px;
+    background: #ffffff;
+    position: relative;
+    transition: 0.1s;
+}
+.header-nav{
+    display: flex;
+    align-items: center;
+}
+
+.header-nav-buttons{
+    margin-right: 70px;
+    font-size: 25px;
+    color: #868686;
+    transition: 0.2s;
+    display: none;
+}
+.header-nav-buttons.active{
+    display: block;
+}
+.header-nav-buttons.active span{
+    color: #868686;
+    margin: 0 8px;
+}
+.header-nav-buttons button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    color: #868686;
+}
+
+
+@media screen and (max-width: 1100px) {
+    .header-nav-buttons button, .header-nav-buttons a{
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .header-nav-buttons{
+        margin-right: 30px;
+    }
+    .header {
+        position: relative;
+    }
+    .header-nav-buttons.active {
+        display: flex;
+        position: absolute;
+        align-items: center;
+        width: 100%;
+        top: 140px;
+        right: auto;
+        left: 0;
+        justify-content: center;
+        font-size: 30px;
+    }
+    .header-nav-buttons.active button, .header-nav-buttons.active a {
+        font-size: 30px;
+        margin: 0  10px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .header-nav-buttons.active button, .header-nav-buttons.active a {
+        font-size: 20px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .header-logo {
+        font-size: 20px;
+    }
+    .header {
+        padding: 20px 20px 50px;
+    }
+    .header-nav-buttons.active {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        top: 70px;
+    }
+    .header-nav-buttons.active span {
+        display: none;
+    }
+    .header-nav-buttons.active button, .header-nav-buttons a {
+        font-size: 17px;
+        margin: 0 10px;
+    }
+    .header-nav-buttons a {
+        margin: 0;
+    }
+}
+.burger-menu {
+    width: 52px;
+}

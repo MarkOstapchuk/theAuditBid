@@ -1,0 +1,414 @@
+.user-info__img img {
+    width: 105px;
+    height: 105px;
+    border-radius: 50%;
+}
+.user-info__img {
+    position: relative;
+}
+.icon-camera {
+    font-size: 50px;
+    cursor: pointer;
+}
+.user-info__imgBG {
+    display: none;
+    position: absolute;
+    top: 0;
+    border: none;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+.user-info__img:hover .user-info__imgBG {
+    display: flex;
+}
+.user-info{
+    display: flex;
+    position: relative;
+    margin: 0 8.333333%;
+}
+.user-info__nameAndStats {
+    display: flex;
+    flex-direction: column;
+    margin-left: 22px;
+    position: relative;
+    max-width: 50%;
+}
+.user-info__nameAndStats div{
+    max-width: 100%;
+}
+.user-info__nameAndStats div div {
+   overflow-x: hidden;
+}
+.user-info__nameAndStats div input {
+    height: 49.3px;
+    font-size: 40px;
+    background: none;
+    border: none;
+    width: 400px;
+    outline: none;
+}
+#user-descriptionTextarea{
+    resize: none;
+    width: 100%;
+    height: 200px;
+    background: none;
+    font-size: 18px;
+    outline: none;
+    padding: 15px;
+    border: 4px solid #4EBFFC;
+}
+.user-info__nameAndStats div{
+    font-size: 40px;
+    display: inline-block;
+}
+
+.user-description .icon-pencil, .user-description .icon-checkmark{
+    background: none;
+    border: none;
+    position: absolute;
+    top: -35px;
+    right: 0;
+}
+.user-info__nameAndStats div {
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+}
+.user-inputError {
+    clip-path: polygon(5% 0, 100% 0, 100% 100%, 5% 100%, 5% 60%, 0 50%, 5% 40%);
+    position: absolute;
+    padding-left: 1.3rem;
+    top: 22%;
+    display: block;
+    transform: translateY(-50%);
+    background: #FF3333;
+    right: -330px;
+    width: 300px;
+    height: 70px;
+    font-size: 17px !important;
+    text-align: center;
+}
+.icon-pencil, .icon-checkmark {
+    font-size: 23px !important;
+    margin-left: 10px;
+    color: gray;
+    cursor: pointer;
+}
+.user-info__nameAndStats span{
+    color: #959595;
+    font-size: 20px;
+}
+.user-info__socials{
+    right: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+.listing-bids-item__socials{
+}
+.fab_socials {
+    font-size: 30px;
+}
+.user-description {
+    margin: 53px 140px 60px;
+    font-size: 20px;
+    position: relative;
+}
+.user-addSocialsBtn {
+    background: none;
+    border: none;
+    font-size: 40px;
+    cursor: pointer;
+    color: #959595;
+    margin-left: 20px;
+}
+.addSocialsPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.57);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 12;
+}
+.addSocialsPopup-window button {
+    display: block;
+    width: 200px;
+    height: 58px;
+    background: #007ACC;
+    border: 1px solid grey;
+    margin: 30px auto 0;
+    cursor: pointer;
+}
+.addSocialsPopup-window {
+    width: 50%;
+    height: 90%;
+    background: #000;
+    border: 10px solid #4EBFFC;
+}
+.addSocialsPopup-window-group{
+    width: 80%;
+    margin: 25px auto 0;
+    display: flex;
+    flex-direction: column;
+}
+.addSocialsPopup-window-group label {
+    padding: 0 0 5px 0;
+}
+.addSocialsPopup-window-group input{
+    outline: none;
+    width: 100%;
+    background: none;
+    border: 4px solid #4EBFFC;
+    height: 68px;
+    font-size: 23px;
+    padding: 0 10px;
+}
+.user-description p {
+    width: 100%;
+    overflow: hidden;
+}
+.user-registered{
+    color: #868686;
+    font-size: 25px;
+    margin-left: 140px;
+}
+.user-completedAudits{
+    width: 84.16666667%;
+    margin: 0 auto;
+}
+.user-completedAudits span{
+    font-size: 35px;
+    color: #959595;
+}
+.userAudits-review{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.userAudits-review div {
+    margin-left: 150px;
+    margin-top: 30px;
+    font-size: 30px;
+    font-style: italic;
+}
+.userAudits-review .user-audits-reviewText{
+    font-size: 23px;
+    margin-left: 100px;
+    margin-top: 35px;
+    margin-bottom: 45px;
+}
+.userAudits-list{
+    margin: 0 auto;
+    width: 84.16666vw;
+}
+.userAudits-list-item{
+    margin-bottom: 69px;
+    padding-top: 10px;
+    height: auto;
+    border: 10px solid #4EC9B0;
+    position: relative;
+}
+.userAudits-list-item__all{
+    display: flex;
+    align-items: center;
+}
+.userAudits-list-item img {
+    margin-left: 46px;
+    width: 105px;
+    height: 105px;
+}
+.userAudits-list-item__title{
+    font-size: 40px;
+    margin-left: 20px;
+}
+.userAudits-list-item__info{
+    position: absolute;
+    right:372px;
+}
+.userAudits-list-item__button{
+    width: 312px;
+    height: 68px;
+    background: #007ACC;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    position: absolute;
+    right: 34px;
+    cursor: pointer;
+}
+/*-------media----------*/
+@media screen and (max-width: 1700px){
+    .userAudits-list-item__info span{
+        font-size: 25px;
+    }
+}
+@media screen and (max-width: 1400px){
+    .userAudits-list-item__info {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .userAudits-list-item__info span:nth-child(even){
+        display: none;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .userAudits-list-item img {
+        margin-left: 15px;
+        width: 95px;
+        height: 95px;
+    }
+    .userAudits-list-item__button{
+        width: 250px;
+        height: 100px;
+        right: 15px;
+        font-size: 25px;
+    }
+    .userAudits-list-item__info{
+        left: 35px;
+        right: auto;
+        top: 130px;
+        flex-direction: row;
+    }
+    .userAudits-list-item__info span {
+        font-size: 30px;
+    }
+    .userAudits-list-item__info span:nth-child(even){
+        display: inline;
+        margin: 0 5px;
+    }
+    .userAudits-review div {
+        margin-left: 40px;
+        margin-top: 90px;
+    }
+    .userAudits-review .user-audits-reviewText{
+        margin-left: 0;
+        padding: 0 25px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .user-info {
+        margin-top: 20px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .user-description, .user-registered{
+        margin-left:8.333333%;
+    }
+    .user-description{
+        margin-top: 83px;
+    }
+    .user-info__socials{
+        right: auto;
+        bottom: -60px;
+        display: flex;
+    }
+    .user-info__nameAndStats{
+        max-width: 70%;
+    }
+    .userAudits-list-item__title{
+        font-size: 25px;
+        max-width: 40%;
+    }
+
+}
+@media screen and (max-width: 800px){
+    .userAudits-list-item__info{
+        flex-direction: column;
+        top: 15px;
+        right: 15px;
+        left: auto;
+        width: auto;
+    }
+    .userAudits-list-item__info span{
+        font-size: 25px;
+    }
+    .userAudits-list-item__info span:nth-child(even){
+        display: none;
+    }
+    .userAudits-list-item__button{
+        top: 120px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .userAudits-review div {
+        margin-left: 40px;
+        margin-top: 160px;
+    }
+}
+@media screen and (max-width: 650px){
+    .userAudits-list-item__info{
+        flex-direction: row;
+        top: 120px;
+        left: 20px;
+        width: 100%;
+    }
+    .user-info__img img{
+        width: 85px;
+        height: 85px;
+    }
+    .userAudits-list-item__info span{
+        font-size: 20px;
+    }
+    .userAudits-list-item__info span:nth-child(even){
+        display: inline;
+    }
+    .userAudits-list-item__button {
+        top: 180px;
+    }
+    .userAudits-review div {
+        margin-left: 30px;
+        margin-top: 190px;
+    }
+    .userAudits-list-item__all{
+        justify-content: space-between;
+        padding-right: 45px;
+    }
+}
+@media screen and (max-width: 450px){
+    .user-info__img img{
+        width: 55px;
+        height: 55px;
+    }
+    .userAudits-list-item img {
+        width: 55px;
+        height: 55px;
+    }
+    .userAudits-list-item__info{
+        flex-direction: column;
+        top: 90px;
+    }
+    .userAudits-list-item__info span{
+        font-size: 20px;
+    }
+    .userAudits-list-item__info span:nth-child(even){
+        display: none;
+    }
+    .userAudits-list-item__button {
+        top: 160px;
+        width: 170px;
+        height: 90px;
+        font-size: 20px;
+    }
+    .userAudits-review div {
+        margin-left: 30px;
+        margin-top: 210px;
+        font-size: 20px;
+    }
+    .userAudits-review .user-audits-reviewText{
+        font-size: 19px;
+        margin-top: 10px;
+       padding: 0 15px;
+    }
+
+}

@@ -1,0 +1,345 @@
+.regPopup-inner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.57);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.disabled {
+    display: none;
+}
+.regPopup-window {
+    position: relative;
+    z-index: 4;
+    width: 42.8%;
+    height: 65.6852%;
+    background: #000;
+    border: 10px solid #4EC9B0;
+}
+.regPopup-closeBtn {
+    color: #868686;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}
+.regPopup-signUpBtn, .regPopup-signInBtn {
+    width: 200px;
+    height: 56px;
+    border: 5px solid #4EC9B0;
+    background: transparent;
+    position: absolute;
+    top: 37px;
+    left: 50%;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+.regPopup-signInBtn{
+    left: auto;
+    right: 50%;
+    border-right: 0px solid #4EC9B0;
+}
+.regPopup-signUpBtn{
+    border-left: 0px solid #4EC9B0;
+}
+.regPopup-signInBtn.active, .regPopup-signUpBtn.active {
+    background: #4EC9B0;
+}
+.regPopup-signIn, .regPopup-signUp {
+    position: absolute;
+    top: 150px;
+    width: 84.54%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#regPopup-login-username, #regPopup-login-password, .regPopup-form input {
+    display: block;
+    outline: none;
+    width: 100%;
+    background: none;
+    height: 70px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 25px;
+    border: 5px solid #4EC9B0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.form-inputGroup {
+    position: relative;
+}
+.form-inputGroup div {
+    clip-path: polygon(5% 0, 100% 0, 100% 100%, 5% 100%, 5% 60%, 0 50%, 5% 40%);
+    position: absolute;
+    padding-left: 1.3rem;
+    top: 50%;
+    display: block;
+    transform: translateY(-50%);
+    background: #FF3333;
+    right: -330px;
+    width: 300px;
+    height: 70px;
+    font-size: 18px;
+    text-align: center;
+}
+.incorrectError{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 300px;
+    height: 60px;
+    background: #FF3333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+}
+.incorrectError h1 {
+    font-size: 15px;
+}
+.incorrectError-closeBtn{
+    position: absolute;
+    background: none;
+    right: 3px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    top: -5px;
+}
+label {
+    color: #868686;
+    font-size: 20px;
+    padding: 15px;
+}
+.Signin-btns {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.Signin-btn, .Signup-btn-confirm{
+    width: 312px;
+    height: 68px;
+    background: #007ACC;
+    border: 1px solid #707070;
+    margin-top: 21px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.popUp-confirmReg h1{
+    font-size: 20px;
+    text-align: center;
+    width: 60%;
+    margin:45px auto 0;
+}
+.popUp-confirmReg button {
+    display: block;
+    width: 159px;
+    height: 68px;
+    font-size: 20px;
+    background: #007ACC;
+    border: 1px solid #707070;
+    margin: 40px auto;
+    cursor: pointer;
+}
+.regPopup-window.signUpConfirm {
+    height: auto;
+}
+.Signin-btn:nth-child(1) {
+    margin-top: 63px;
+}
+.regPopup-window.signUp {
+    height: 79%;
+}
+.Signup-btn-confirm {
+    display: block;
+    margin: 20px auto 0px;
+}
+::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: transparent;
+}
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: transparent;
+}
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: transparent;
+}
+:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: transparent;
+}
+input::placeholder {
+    color: transparent;
+}
+/*--------------- media ------------*/
+
+@media screen and (max-width: 1200px) {
+    .regPopup-window {
+        width: 70%;
+    }
+    .form-inputGroup {
+        position: static;
+    }
+    .form-inputGroup div {
+        clip-path: none;
+        padding: 0;
+        top: -25%;
+        left: 0;
+        transform: none;
+        width: 100%;
+        margin: 0;
+    }
+}
+@media screen and (max-height: 1050px) {
+    .regPopup-signUp{
+        top: 120px;
+    }
+}
+@media screen and (max-height: 1010px) {
+    .regPopup-form input {
+        height: 55px;
+        font-size: 23px;
+    }
+    .Signup-btn-confirm {
+        width: 200px;
+    }
+    .Signin-btn:nth-child(1) {
+        margin-top: 33px;
+    }
+}
+@media screen and (max-height: 930px) {
+    ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #868686;
+    }
+    :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #868686;
+    }
+    ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #868686;
+    }
+    :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #868686;
+    }
+    input::placeholder {
+        color: #868686;
+    }
+    .regPopup-form input {
+        margin-top: 35px;
+        font-size: 20px;
+    }
+    .regPopup-form label {
+        display: none;
+    }
+    .Signin-btns {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+    .Signin-btn:nth-child(2) {
+        margin: 0 0 0 30px;
+    }
+    .Signin-btn:nth-child(1) {
+        margin: 0 30px 0 0;
+
+    }
+
+}
+@media screen and (max-height: 870px) {
+    .regPopup-form input {
+        margin-top: 25px;
+        font-size: 20px;
+    }
+}
+@media screen and (max-height: 800px) {
+    .regPopup-form input {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+}
+@media screen and (max-height: 770px) {
+    .regPopup-form input {
+        height: 45px;
+        font-size: 18px;
+    }
+    .regPopup-signUpBtn, .regPopup-signInBtn {
+        top: 15px;
+        height: 40px;
+        width: 120px;
+    }
+    .regPopup-signIn {
+        top: 60px;
+    }
+}
+@media screen and (max-width: 770px) {
+    .regPopup-signUpBtn, .regPopup-signInBtn {
+        width: 120px;
+    }
+    .Signin-btn {
+        font-size: 15px;
+    }
+
+}
+@media screen and (max-height: 710px) {
+    .regPopup-signUp {
+        top: 70px;
+    }
+}
+
+@media screen and (max-height: 640px) {
+    .regPopup-window.signUp {
+        height: 90%;
+    }
+    #regPopup-login-username, #regPopup-login-password {
+        height: 50px;
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .regPopup-closeBtn {
+        top: -2px;
+        right: 4px;
+    }
+    .Signup-btn-confirm{
+        width: 150px;
+        font-size: 17px;
+    }
+    .Signin-btn:nth-child(1n) {
+        margin: 5px;
+    }
+}
+@media screen and (max-width: 400px){
+    .Signin-btn {
+        font-size: 13px;
+    }
+    .regPopup-signUpBtn, .regPopup-signInBtn {
+
+        width: 80px;
+        font-size: 17px;
+    }
+}
+@media screen and (max-width: 1100px) {
+    .regPopup-closeBtn {
+        top: 6px;
+        right: 10px;
+    }
+}
+

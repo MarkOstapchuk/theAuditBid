@@ -1,0 +1,298 @@
+/*----------Main--------*/
+
+.main-titles{
+    padding: calc(294px - 118px) 10vw 0;
+}
+.main-title__1{
+    font-size: 70px;
+    color: #4EBFFC;
+}
+.main-title__2{
+    font-size: 40px;
+    color: #4EC9B0;
+    margin-top: 28px;
+    margin-bottom: 28px;
+}
+.main-title__3{
+    font-size: 40px;
+    color: #4EC9B0;
+    display: inline-block;
+}
+.main-title__4 {
+    color: #6A9955;
+    font-size: 35px;
+    margin-left: 100px;
+}
+.main-activeListings{
+    margin-top: 328px;
+}
+.main-activeListings h1{
+    font-size: 40px;
+    margin-bottom: 95px;
+}
+.main-activeListings-list{
+    margin: 0 auto;
+    width: 84.16666vw;
+}
+.main-activeListings-list-item {
+    margin-bottom: 69px;
+    height: 178px;
+    width: 100%;
+    border: 10px solid #4EC9B0;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.main-activeListings-list-item img {
+    margin-left: 46px;
+    width: 105px;
+    height: 105px;
+}
+.main-activeListings-list-item__title{
+    font-size: 40px;
+    margin-left: 2.96875vw;
+}
+.main-activeListings-list-item__info{
+    font-size: 20px;
+    position: absolute;
+    right: 26.197916vw;
+}
+.main-activeListings-list-item__button{
+    width: 312px;
+    height: 68px;
+    background: #007ACC;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    position: absolute;
+    right: 34px;
+    cursor: pointer;
+}
+.main-activeListings-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 538px;
+    height: 68px;
+    background: #007ACC;
+    font-size: 20px;
+    margin: 0 auto;
+    border: none;
+}
+
+/*---------media--------*/
+@media screen and (max-height: 1000px) {
+    .main-activeListings {
+        margin-top: 230px;
+    }
+}
+
+@media screen and (max-height: 900px) {
+    .main-titles {
+        padding-top: 120px;
+
+    }
+
+}
+
+@media screen and (max-height: 830px) {
+    .main-activeListings {
+        margin-top: 170px;
+    }
+}
+
+@media screen and (max-height: 780px) {
+    .main-titles {
+        padding-top: 70px;
+
+    }
+}
+@media screen and  (max-width: 1400px){
+    .main-title__1{
+        font-size: 60px;
+    }
+}
+@media screen and (max-width:1700px) {
+    .main-activeListings-list-item__title{
+        font-size: 30px;
+        margin-left: 2.26875vw;
+        max-width: 25%;
+    }
+}
+@media screen and (max-width:1500px) {
+    .main-activeListings-list-item__title{
+        font-size: 25px;
+        margin-left: 2.56875vw;
+    }
+    .main-activeListings-list-item img {
+        margin-left: 30px;
+        width: 90px;
+        height: 90px;
+    }
+    .main-activeListings-list-item__button{
+        width: 272px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .main-activeListings-list-item__title{
+        font-size: 20px;
+        max-width: 100px;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .main-activeListings-list-item__info{
+        display: flex;
+        flex-direction: column;
+        right: 362px;
+    }
+    .main-activeListings-list-item__info span:nth-child(2){
+        display: none;
+    }
+    .main-title__1{
+        font-size: 50px;
+    }
+}
+@media screen and (max-width: 950px) {
+    .main-activeListings-list-item__button{
+        width: 232px;
+    }
+    .main-activeListings-list-item__info{
+        right: 332px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .main-title__1{
+        font-size: 40px;
+    }
+    .main-title__2{
+        font-size: 35px;
+    }
+    .main-title__3{
+        font-size: 35px;
+    }
+    .main-titles{
+        padding-top: 45px;
+    }
+    .main-title__4 {
+        font-size: 27px;
+        margin-left: 20px;
+    }
+    .main-activeListings {
+        margin-top: 170px;
+    }
+    .main-activeListings h1{
+        font-size: 35px;
+    }
+    .main-activeListings-button {
+        width: 200px;
+    }
+    .main-activeListings-list-item{
+        align-items: flex-start;
+        padding-top: 30px;
+        height: 228px;
+    }
+    .main-activeListings-list-item img {
+        margin-left: 23px;
+        width: 55px;
+        height: 55px;
+    }
+    .main-activeListings-list-item__title{
+        font-size: 25px;
+        margin-left: 2.96875vw;
+        max-width: 1px;
+    }
+    .main-activeListings-list-item__info{
+        font-size: 20px;
+        position: absolute;
+        right: 23px;
+        display: flex;
+        flex-direction: column;
+    }
+    .main-activeListings-list-item__info span:nth-child(2){
+        display: none;
+    }
+    .main-activeListings-list-item__button{
+        width: 200px;
+        bottom: 5px;
+        font-size: 20px;
+        right: 50%;
+        transform: translateX(50%);
+    }
+}
+@media screen and (max-width: 600px) {
+    .main-title__1{
+        font-size: 40px;
+    }
+    .main-title__2{
+        font-size: 25px;
+    }
+    .main-title__3{
+        font-size: 25px;
+    }
+    .main-titles{
+        padding-top: 30px;
+    }
+    .main-title__4 {
+        display: block;
+        font-size: 25px;
+        margin-left: 0px;
+        margin-top: 15px;
+    }
+    .main-activeListings{
+        margin-top: 90px;
+    }
+    .main-activeListings h1{
+        font-size: 35px;
+    }
+    .main-activeListings-list-item__title{
+        max-width: 100%;
+    }
+    .main-activeListings-list-item__info{
+        right: auto;
+        display: flex;
+        left: 23px;
+        flex-direction: row;
+        top: 100px;
+    }
+    .main-activeListings-list-item__info span:nth-child(2){
+        display: inline-block;
+        margin: 0 3px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .main-activeListings-list-item__info{
+        font-size: 14px;
+    }
+    .main-activeListings-list-item__title{
+        font-size: 19px;
+    }
+    .main-activeListings h1{
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .main-title__1{
+        font-size: 25px;
+
+    }
+    .main-title__2{
+        font-size: 21px;
+        margin: 10px;
+    }
+    .main-title__4{
+        font-size: 17px;
+    }
+    .main-title__3{
+        font-size: 18px;
+    }
+    .main-activeListings{
+        margin-top: 68px;
+    }
+
+}
+
