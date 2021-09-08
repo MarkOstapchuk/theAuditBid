@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import {useHistory} from 'react-router-dom'
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import {SERVER_URL, userId} from "../../../consts";
+import {SERVER_URL, USER_ROUTE, userId} from "../../../consts";
 import './modal.css'
 
 const Modal = ({setActive, setIsPopupActive}) => {
@@ -15,6 +16,7 @@ const Modal = ({setActive, setIsPopupActive}) => {
     const [inputUPPassword1, setInputUPPassword1] = useState('')
     const [inputUPPassword2, setInputUPPassword2] = useState('')
 
+    const history = useHistory()
     //errors
 
     const [errorInput, setErrorInput] = useState({})
@@ -29,6 +31,7 @@ const Modal = ({setActive, setIsPopupActive}) => {
             ).then(data => {
                         localStorage.setItem(userId, data.data.userId)
                         localStorage.setItem('token', data.data.auth)
+                        history.push(`${USER_ROUTE}/${data.data.userId}`)
                         setIsPopupActive(prev => !prev)
             }).catch((e) => {
                 const data = e.response.data

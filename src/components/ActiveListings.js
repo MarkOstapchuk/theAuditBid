@@ -31,7 +31,7 @@ const ActiveListings = () => {
                 });
             }}>ACTIVE LISTINGS</h1>
             {(isActive) && <><div className={'main-activeListings-list'}>
-                {listings.map(item => {
+                {listings.filter((item)=>!item.assignedContractor).map(item => {
                     return (
                         <div key={item._id} className="main-activeListings-list-item">
                             <img src={item.logoURL} alt="logo"/>

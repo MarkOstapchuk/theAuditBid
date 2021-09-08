@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useHistory} from 'react-router-dom'
 import axios from "axios";
-import {LISTING_ROUTE, MAKER_TOKEN, NOLOGO, SERVER_URL, USER_ROUTE, userId} from "../../consts";
+import {LISTING_ROUTE, NOLOGO, SERVER_URL, USER_ROUTE, userId} from "../../consts";
 import {RingLoader} from "react-spinners";
 import './User.css'
 import {secondsToDhms} from "../../functions";
@@ -51,9 +51,14 @@ const User = (props) => {
             fetchUser()
         }
     })
+    console.log(user)
     const getRegisteredTime = (date) => {
         const Dated = new Date(date.split('T')[0])
-        return secondsToDhms(Date.now() - Dated.getTime())
+        const time =  date.split('T')[1].split('.')[0]
+        const hours = time.split(':')[0]*3600*1000
+        const minutes = time.split(':')[1]*60*1000
+        const seconds = time.split(':')[2]*1000
+        return secondsToDhms(Date.now() - Dated.getTime() - hours - minutes - seconds)
     }
     const changeName = async () => {
         await axios.patch(`${SERVER_URL}/${USER_ROUTE}`, {
@@ -129,7 +134,7 @@ const User = (props) => {
         document.body.style.overflow = "auto";
     }
     if (loader) {
-        return <RingLoader color={'#fff'}/>
+        return <div style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)'}}><RingLoader color={'#fff'}/></div>
     }
     return (
         <>
@@ -206,9 +211,9 @@ const User = (props) => {
                         {(user.githubURL) && <a target={'_blank'} rel="noreferrer" href={user.githubURL}>
                             <i className="fab fa-github fab_socials"/>
                         </a>}
-                        {(isUserAdmin) && <button onClick={() => setSocialsPopup(prevState => !prevState)}
+                        {(isUserAdmin) && <><span className={'user-addSocialStripe'}/><button onClick={() => setSocialsPopup(prevState => !prevState)}
                                                   className={'user-addSocialsBtn'}><i className="fas fa-plus"/>
-                        </button>}
+                        </button></>}
                     </div>
                 </div>
                 <div className="user-description">

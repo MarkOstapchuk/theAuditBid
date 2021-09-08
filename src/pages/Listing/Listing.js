@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {BounceLoader} from 'react-spinners'
-import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from "react-redux";
-import {MAKER_TOKEN, SERVER_URL, USER_ROUTE, userId} from "../../consts";
+import { SERVER_URL, userId} from "../../consts";
 import './listing.css'
 import {secondsToDhms, useStateCallback} from "../../functions";
 import HireModal from "../../components/Modals/HireModal/HireModal";
@@ -20,7 +19,6 @@ const ListingComp = (props) => {
     const own_bid = useSelector(state => state.bidsReducer.ownBid)
     const bids_ = useSelector(state => state.bidsReducer.bids)
     const [isListingEnded, setListingEnded] = useState(false)
-    const history = useHistory()
     const dispatch = useDispatch()
     const id = props.match.params.id
     useEffect(()=>{
@@ -71,25 +69,16 @@ const ListingComp = (props) => {
         }
         return true;
     }
-    function hire(username, twitterURL, telegramURL, discordURL) {
-        setIsHireModalActive(prevState => !prevState)
-        setUser({userName: username, isHired: false, twitterURL, telegramURL, discordURL})
-    }
     function setActive() {
         setIsHireModalActive(prevState => !prevState)
     }
     function setUserHired() {
         setUser(prevState => {return {...prevState, isHired: true}})
     }
-
-    function view(id) {
-        history.push(`/${USER_ROUTE}/${id}`)
-    }
-
     if (loader) {
-        return <BounceLoader color={'#fff'}/>
+        return <div style={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)'}}>
+            <BounceLoader color={'#fff'}/></div>
     }
-
     return (
         <>
             {(isHireModalActive) && <HireModal setUserHired={setUserHired} user={user} setActive={setActive}/>}
@@ -111,8 +100,8 @@ const ListingComp = (props) => {
                         <div className={'listing-item__info'}>
                             <span>{listing.contractCount} Contracts</span>
                             <span> | </span>
-                            <span>{(listing.linesCount.toString().length >= 4) &&
-                            (listing.linesCount / 1000).toFixed(1) + 'k'
+                            <span>{(listing.linesCount.toString().length >= 4) ?
+                                ((listing.linesCount / 1000).toFixed(1) + 'k') :listing.linesCount
                             } Lines</span>
                         </div>
                     </div>
@@ -137,7 +126,7 @@ const ListingComp = (props) => {
                 <div className="listing-description">{listing.description}</div>
                 <div className={'listing-info'}>
                     <span>Language: {listing.language}</span>
-                    <span>Time range: </span>
+                    <span>Time range: {listing.maxDuration}</span>
                     <span>Action end in: {secondsToDhms(listing.auctionEnd)}</span>
                 </div>
                 {<h1 className={'listing-bids-title'} onClick={()=>{

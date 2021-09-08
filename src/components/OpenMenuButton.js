@@ -20,7 +20,7 @@ const OpenMenuButton = ({openRegPopup}) => {
                 onClick={()=>openRegPopup()}>Sign In</button> : <><button onClick={()=>{
                     history.push(`/${USER_ROUTE}/${localStorage[userId]}`)
                 history.go(0)
-                }}>profile</button><span>|</span><button onClick={()=>{
+                }}>Profile</button><span>|</span><button onClick={()=>{
                         delete localStorage.token
                         history.push(`/`)
                         history.go(0)

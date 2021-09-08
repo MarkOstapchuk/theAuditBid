@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
-import {MAKER_TOKEN, NOLOGO, SERVER_URL, USER_ROUTE} from "../consts";
+import { NOLOGO, SERVER_URL, USER_ROUTE} from "../consts";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 import Notification from "./Notification/Notification";
@@ -51,7 +51,7 @@ const BidsInactive = ({listing, listingId}) => {
                             setReviewPopupActive('')
                         }}>&#215;</button>
                         <div>Review for {isReviewPopupActive.name}:</div>
-                        <textarea name="review-window-textarea" id="review-window-textarea" value={reviewPopupInput} onChange={(event => setReviewPopupInput(event.target.value))}/>
+                        <textarea style={{borderColor: '#33FF43'}} name="review-window-textarea" id="review-window-textarea" value={reviewPopupInput} onChange={(event => setReviewPopupInput(event.target.value))}/>
                         <button onClick={postReview.bind(null, isReviewPopupActive.id)} className={'reviewPopup-window-confirmBtn'}>Post</button>
                     </div>
 

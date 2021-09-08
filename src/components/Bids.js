@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
-import {MAKER_TOKEN, NOLOGO, SERVER_URL, USER_ROUTE, userId} from "../consts";
+import {NOLOGO, SERVER_URL, USER_ROUTE, userId} from "../consts";
 import {useHistory, useLocation} from 'react-router-dom'
 import axios from "axios";
-import Notification from "./Notification/Notification";
 
 const Bids = (props) => {
     const [sort, setSort] = useState('Cheapest')
@@ -11,13 +10,13 @@ const Bids = (props) => {
     const [placeBidInputDays, setPlaceBidInputDays] = useState(null)
     const [placeBidInputPrice, setPlaceBidInputPrice] = useState(null)
     const [placeBidTextarea, setPlaceBidTextarea] = useState('')
-    const [inputError, setInputError] = useState({})
     const [isPlaceBidActive, setPlaceBidActive] = useState(false)
     const [placeBidError, setPlaceBidError] = useState({})
     const [isOwnBidEditing,setOwnBidEditing] = useState(false)
+    const [placeBidPopupConfirm, setPlaceBidPopupConfirm] = useState(false)
     const [ownBidPriceEdit,setOwnBidPriceEdit] = useState(null)
     const [ownBidDaysEdit,setOwnBidDaysEdit] = useState(null)
-    const [notification, setNotification] = useState({})
+    const [ownBidNoteEdit,setOwnBidNoteEdit] = useState(null)
     const bids = useSelector(state => state.bidsReducer.bids)
     const own_bid = useSelector(state => state.bidsReducer.ownBid)
     const full_bids = (own_bid._id) ? [...bids, own_bid] : [...bids]
@@ -47,6 +46,7 @@ const Bids = (props) => {
         if (ownBidDaysEdit === null && ownBidPriceEdit === null) {
             setOwnBidDaysEdit(own_bid.daysCount)
             setOwnBidPriceEdit(own_bid.price)
+            setOwnBidNoteEdit(own_bid.note)
         }
     })
     const editOwnBid = async ()=>{
@@ -55,7 +55,8 @@ const Bids = (props) => {
         }
         await axios.patch(`${SERVER_URL}/bids/${own_bid._id}`, {
             price:ownBidPriceEdit,
-            daysCount: ownBidDaysEdit
+            daysCount: ownBidDaysEdit,
+            note: ownBidNoteEdit
 
         }, {
             headers: {
@@ -100,20 +101,27 @@ const Bids = (props) => {
             setTimeout(()=>{setPlaceBidError({})}, 4000)
             return
         }
+        setPlaceBidActive(false)
+        setPlaceBidPopupConfirm(prev => !prev)
+
+    }
+    const placeBidOnServer = () => {
         axios.post(`${SERVER_URL}/bids`, {
             listingId: listingId,
             daysCount: placeBidInputDays,
             price: placeBidInputPrice,
             note: placeBidTextarea
         }, {
-                headers: {
-                    'auth-token': localStorage.token
-                }
+            headers: {
+                'auth-token': localStorage.token
+            }
         }).then(data=>{
-            setNotification({type: 'success', message: 'bid has been placed'})
             history.go(0)
 
         })
+    }
+    const deleteBid = () => {
+
     }
     return (
         <>
@@ -153,10 +161,10 @@ const Bids = (props) => {
                         <div className="inputGroup">
                             <label htmlFor="">Price:</label>
                             <div className="btns">
-                                <button className={'icon-minus'} onClick={()=>setPlaceBidInputPrice(prev=>(prev>0)?(prev-1):prev)}/>
+                                <button className={'icon-minus'} onClick={()=>setPlaceBidInputPrice(prev=>(prev>0)?(prev-500):prev)}/>
                                 <input onChange={(e) => setPlaceBidInputPrice(e.target.value)}
                                        placeholder={'Price'} value={(placeBidInputPrice!==null) ? placeBidInputPrice : ''} type="text" id={'placeBidPopup-window-input__price'}/>
-                                <button className={'icon-plus'} onClick={()=>setPlaceBidInputPrice(prev=>prev+1)}/>
+                                <button className={'icon-plus'} onClick={()=>setPlaceBidInputPrice(prev=>prev+500)}/>
                                 {(placeBidError.type === 'price' && <div className={'placeBidError'}>{placeBidError.message}</div>)}
                             </div>
                         </div>
@@ -170,22 +178,73 @@ const Bids = (props) => {
                     </div>
                 </div>
             </div>}
+            {(isOwnBidEditing) && <div className="placeBidPopup">
+                <div className="placeBidPopup-window">
+                    <button className="placeBidPopup-window-closeBtn" onClick={()=>setOwnBidEditing(prev => !prev)}>&#215;</button>
+                    <div className="container">
+                        <div className="placeBidPopup-window-warning">
+                            Please enter the total duration it would take you to complete audit as well as how much you
+                            would like to charge in total
+                        </div>
+                        <div className="inputGroup">
+                            <label htmlFor="">Duration:</label>
+                            <div className="btns">
+                                <button className={'icon-minus'} onClick={()=>setOwnBidDaysEdit(prev=>(prev>0)?(prev-1):prev)}/>
+                                <input onChange={(e) => setOwnBidDaysEdit(e.target.value)} value={ownBidDaysEdit}
+                                       placeholder={'Days'} type="text" id={'placeBidPopup-window-input__days'}/>
+                                <button className={'icon-plus'} onClick={()=>setOwnBidDaysEdit(prev=>+prev+1)}/>
+                                {(placeBidError.type === 'days' && <div className={'placeBidError'}>{placeBidError.message}</div>)}
+                            </div>
+                        </div>
+                        <div className="inputGroup">
+                            <label htmlFor="">Price:</label>
+                            <div className="btns">
+                                <button className={'icon-minus'} onClick={()=>setOwnBidPriceEdit(prev=>(prev>0)?(prev-500):prev)}/>
+                                <input onChange={(e) => setOwnBidPriceEdit(e.target.value)}
+                                       placeholder={'Price'} value={ownBidPriceEdit} type="text" id={'placeBidPopup-window-input__price'}/>
+                                <button className={'icon-plus'} onClick={()=>setOwnBidPriceEdit(prev=>prev+500)}/>
+                                {(placeBidError.type === 'price' && <div className={'placeBidError'}>{placeBidError.message}</div>)}
+                            </div>
+                        </div>
+                        <div className="placeBidPopup-window-note">
+                            <label htmlFor="placeBidPopup-window-note__input">Note:</label>
+                            <textarea value={ownBidNoteEdit} onChange={(e)=>setOwnBidNoteEdit(e.target.value)} name="" id="placeBidPopup-window-note__input"/>
+                            {(!placeBidTextarea) && <div className="placeBidPopup-window-note__warning">Optional</div>}
+                            {(placeBidError.type === 'note' && <div className={'placeBidError'}>{placeBidError.message}</div>)}
+                        </div>
+                        <div className="placeBidPopup-window-btns">
+                            <button onClick={deleteBid} className={'placeBidPopup-window-deleteBtn'}>Delete bid</button>
+                        <button onClick={editOwnBid} className={'placeBidPopup-window-saveBtn'}>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>}
+
+            {/*PLACE BID POPUP CONFIRM*/}
+            {(placeBidPopupConfirm)&&
+            <div className={'placeBidConfirm'}>
+                <div className={'placeBidConfirm-window'}>
+                    <div className={'placeBidConfirm-window-text'}>Are you sure you would like to place a bid of ${placeBidInputPrice+ ' '}
+                    and {(placeBidInputDays === 1) ? placeBidInputDays+' day' : placeBidInputDays+' days'} </div>
+                    <div className={'placeBidConfirm-window-btns'}>
+                <button className={'placeBidConfirm-window-place'} onClick={placeBidOnServer}>PLACE</button>
+                <button className={'placeBidConfirm-window-back'} onClick={()=>setPlaceBidPopupConfirm(prev=>!prev)}>Back</button>
+                    </div>
+                </div>
+            </div>}
+
 
             {/*OWN BID IF EXIST*/}
             {(bids.length!==0) ? <>
             {(own_bid._id) && <div className={'listing_bids_ownBid'}>
                 <img className={'listing-bids-item__img'} src={(own_bid.profilePictureURL) || NOLOGO} alt="logo"/>
                 <div className={'listing_bids_ownBid__1'}>{own_bid.name}</div>
-                {(!isOwnBidEditing)?<div className={'listing_bids_ownBid__2'}>${ownBidPriceEdit}</div>:
-                    <input type={'number'} className={'own_bid-editInput'} onChange={(e)=>setOwnBidPriceEdit(+e.target.value)}
-                           value={ownBidPriceEdit}/>}
-                {(!isOwnBidEditing)?<div
+                <div className={'listing_bids_ownBid__2'}>${ownBidPriceEdit}</div>
+                <div
                     className={'listing_bids_ownBid__3'}>{(+(ownBidDaysEdit / 7).toFixed(0) === ownBidDaysEdit / 7) ?
                     (ownBidDaysEdit / 7 === 1) ? ownBidDaysEdit / 7 + ' week' : ownBidDaysEdit / 7 + ' weeks' :
-                    (ownBidDaysEdit === 1) ? ownBidDaysEdit + ' day' : ownBidDaysEdit + ' days'}</div>:
-                    <input type={'number'} className={'own_bid-editInput'} onChange={(e)=>setOwnBidDaysEdit(+e.target.value)} value={ownBidDaysEdit}/>}
-                {(!isOwnBidEditing)?<button onClick={()=>setOwnBidEditing(prev=>!prev)} className={'listing_bids_ownBid__btn'}>Edit</button>:
-                    <button onClick={editOwnBid} className={'listing_bids_ownBid__btn'}>Save</button>}
+                    (ownBidDaysEdit === 1) ? ownBidDaysEdit + ' day' : ownBidDaysEdit + ' days'}</div>
+                <button onClick={()=>setOwnBidEditing(prev=>!prev)} className={'listing_bids_ownBid__btn'}>Edit</button>
             </div>}
 
             {/*SORT BUTTON*/}
@@ -214,9 +273,10 @@ const Bids = (props) => {
                                  className="listing-bids-item__img"/>
                             <div className="listing-bids-item__shortInfo">
                                 <div className="listing-bids-item__name">{item.biider.name}</div>
-                                <div className="listing-bids-item__socials">{(item.biider.twitterURL) &&
-                                <a href={item.biider.twitterURL}>twitter</a>}{(item.biider.discordURL) && <a
-                                    href={item.biider.discordURL}>discord</a>}</div>
+                                <div className="listing-bids-item__socials">
+                                    {(item.biider.twitterURL) &&
+                                <a href={item.biider.twitterURL}>twitter</a>}
+                                </div>
                             </div>
                             <div className={'listing-bids-item__price'}>${item.price}</div>
                             <div
@@ -247,8 +307,7 @@ const Bids = (props) => {
                             <div className="listing-bids-item__shortInfo">
                                 <div className="listing-bids-item__name">{item.biider.name}</div>
                                 <div className="listing-bids-item__socials">{(item.biider.twitterURL) &&
-                                <a href={item.biider.twitterURL}>twitter</a>}{(item.biider.discordURL) && <a
-                                    href={item.biider.discordURL}>discord</a>}</div>
+                                <a href={item.biider.twitterURL}>twitter</a>}</div>
                             </div>
                             <div className={'listing-bids-item__price'}>${item.price}</div>
                             <div

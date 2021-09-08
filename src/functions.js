@@ -9,7 +9,9 @@ export function secondsToDhms(miliseconds) {
     const dDisplay = d > 0 ? d+"d " : "";
     const hDisplay = h > 0 ? h+"h " : "";
     const mDisplay = m > 0 ? m+"m" : "";
-
+    if (dDisplay + hDisplay + mDisplay === '') {
+        return seconds + 's'
+    }
     return dDisplay + hDisplay + mDisplay;
 }
 export function useStateCallback(initialState) {
