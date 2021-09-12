@@ -31,7 +31,9 @@ const ActiveListings = () => {
                 });
             }}>ACTIVE LISTINGS</h1>
             {(isActive) && <><div className={'main-activeListings-list'}>
-                {listings.filter((item)=>!item.assignedContractor).map(item => {
+                {listings.filter((item)=>!item.assignedContractor)
+                    .filter((item=>(Date.now()/1000).toFixed(0) < item.auctionEnd))
+                    .map(item => {
                     return (
                         <div key={item._id} className="main-activeListings-list-item">
                             <img src={item.logoURL} alt="logo"/>

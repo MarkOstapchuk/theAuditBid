@@ -251,7 +251,7 @@ const User = (props) => {
                                             <div className={'userAudits-list-item__title'}>{item.name}</div>
                                             <div className={'userAudits-list-item__info'}>
                                                 <span>{item.contractCount} Contracts</span>
-                                                <span> | </span>
+                                                <span>|</span>
                                                 <span>{(item.linesCount.toString().length >= 4) ?
                                                     ((item.linesCount / 1000).toFixed(1) + 'k') : item.linesCount
                                                 } Lines</span>

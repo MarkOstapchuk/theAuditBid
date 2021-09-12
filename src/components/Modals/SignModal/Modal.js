@@ -51,6 +51,9 @@ const Modal = ({setActive, setIsPopupActive}) => {
                     return
                 }
                     setErrorInput({type: 'incorrect', message: data})
+                setTimeout(()=>{
+                    setErrorInput({})
+                }, 4000)
             });
         } catch (e) {
 

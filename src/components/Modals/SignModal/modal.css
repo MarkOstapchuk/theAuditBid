@@ -131,7 +131,7 @@ label {
     width: 312px;
     height: 68px;
     background: #007ACC;
-    border: 1px solid #707070;
+    border: none;
     margin-top: 21px;
     font-size: 20px;
     cursor: pointer;
@@ -148,7 +148,7 @@ label {
     height: 68px;
     font-size: 20px;
     background: #007ACC;
-    border: 1px solid #707070;
+    border:none;
     margin: 40px auto;
     cursor: pointer;
 }

@@ -59,7 +59,7 @@
     font-size: 18px;
     outline: none;
     padding: 15px;
-    border: 4px solid #33FF43;
+    border: 4px solid #4EC9B0;
 }
 .user-info__nameAndStats div{
     font-size: 40px;
@@ -121,6 +121,7 @@
 .user-addSocialStripe{
     height: 30px;
     width: 1px;
+    margin: 0 10px;
     background: #fff;
 }
 .user-addSocialsBtn {
@@ -189,7 +190,7 @@
     width: 84.16666667%;
     margin: 0 auto;
 }
-.user-completedAudits span{
+.user-completedAudits > span{
     font-size: 25px;
     position: absolute;
     left: 140px;
@@ -252,6 +253,14 @@
 .userAudits-list-item__info{
     position: absolute;
     right:372px;
+    display: flex;
+    flex-direction: row;
+}
+.userAudits-list-item__info span {
+    color: #959595;
+}
+.userAudits-list-item__info span:nth-child(2) {
+    margin: 0 5px;
 }
 .userAudits-list-item__button{
     width: 312px;

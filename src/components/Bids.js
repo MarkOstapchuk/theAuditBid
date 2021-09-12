@@ -17,9 +17,11 @@ const Bids = (props) => {
     const [ownBidPriceEdit,setOwnBidPriceEdit] = useState(null)
     const [ownBidDaysEdit,setOwnBidDaysEdit] = useState(null)
     const [ownBidNoteEdit,setOwnBidNoteEdit] = useState(null)
+    const [hirePopup, setHirePopup] = useState({})
     const bids = useSelector(state => state.bidsReducer.bids)
     const own_bid = useSelector(state => state.bidsReducer.ownBid)
     const full_bids = (own_bid._id) ? [...bids, own_bid] : [...bids]
+    console.log(full_bids)
     const history = useHistory()
     const location = useLocation()
     const listingId = location.pathname.split('/')[2]
@@ -34,7 +36,7 @@ const Bids = (props) => {
     }).sort(function (a, b) {
         return a.days - b.days
     })
-    if (noteMessage || isPlaceBidActive) {
+    if (noteMessage || isPlaceBidActive || hirePopup.id) {
         document.body.style.overflow = "hidden";
     } else {
         document.body.style.overflow = "auto";
@@ -62,16 +64,10 @@ const Bids = (props) => {
             headers: {
                 'auth-token':localStorage.token
             }
-        }).then(()=>setOwnBidEditing(prev=>!prev))
-    }
-    const hire = async (id) => {
-        await axios.patch(`${SERVER_URL}/listings/${listingId}/hire`, {
-            assignedContractor: id
-        }, {
-            headers: {
-                'auth-token':localStorage.token
-            }
-        }).then(data=>history.go(0))
+        }).then(()=>{
+            setOwnBidEditing(prev=>!prev)
+            history.go(0)
+        })
     }
 
     const placeBid = () => {
@@ -123,6 +119,18 @@ const Bids = (props) => {
     const deleteBid = () => {
 
     }
+    const openHirePopup = (id, name) => {
+        setHirePopup({id, name})
+    }
+    const hire = async (id) => {
+        await axios.patch(`${SERVER_URL}/listings/${listingId}/hire`, {
+            assignedContractor: id
+        }, {
+            headers: {
+                'auth-token':localStorage.token
+            }
+        }).then(data=>history.go(0))
+    }
     return (
         <>
             {/*NOTE MESSAGE POPUP*/}
@@ -136,7 +144,20 @@ const Bids = (props) => {
                 </div>
             </div>}
 
+            {(hirePopup.id) && <div className={'hirePopup'}>
+                <div className="hirePopup-window">
+                    <div onClick={()=>setHirePopup({})} className="hirePopup-window-closeBtn">&#215;</div>
+                    <div className="hirePopup-window-text">
+                        Are you sure you want to hire {hirePopup.name}?<br/>
+                        This will close the action and notify all participants.
+                    </div>
+                    <div className="hirePopup-window-btns">
+                        <button onClick={()=>{hire(hirePopup.id)}} className="hirePopup-window-hireBtn">Hire</button>
+                        <button onClick={()=>setHirePopup({})} className="hirePopup-window-backBtn">Back</button>
+                    </div>
 
+                </div>
+            </div>}
             {/*PLACE BID POPUP*/}
 
 
@@ -161,10 +182,10 @@ const Bids = (props) => {
                         <div className="inputGroup">
                             <label htmlFor="">Price:</label>
                             <div className="btns">
-                                <button className={'icon-minus'} onClick={()=>setPlaceBidInputPrice(prev=>(prev>0)?(prev-500):prev)}/>
+                                <button className={'icon-minus'} onClick={()=>setPlaceBidInputPrice(prev=>(prev>499)?(+prev-500):prev)}/>
                                 <input onChange={(e) => setPlaceBidInputPrice(e.target.value)}
                                        placeholder={'Price'} value={(placeBidInputPrice!==null) ? placeBidInputPrice : ''} type="text" id={'placeBidPopup-window-input__price'}/>
-                                <button className={'icon-plus'} onClick={()=>setPlaceBidInputPrice(prev=>prev+500)}/>
+                                <button className={'icon-plus'} onClick={()=>setPlaceBidInputPrice(prev=>+prev+500)}/>
                                 {(placeBidError.type === 'price' && <div className={'placeBidError'}>{placeBidError.message}</div>)}
                             </div>
                         </div>
@@ -235,6 +256,16 @@ const Bids = (props) => {
 
 
             {/*OWN BID IF EXIST*/}
+            {(bids.length === 0 && own_bid._id) && <div className={'listing_bids_ownBid'}>
+                <img className={'listing-bids-item__img'} src={(own_bid.profilePictureURL) || NOLOGO} alt="logo"/>
+                <div className={'listing_bids_ownBid__1'}>{own_bid.name}</div>
+                <div className={'listing_bids_ownBid__2'}>${ownBidPriceEdit}</div>
+                <div
+                    className={'listing_bids_ownBid__3'}>{(+(ownBidDaysEdit / 7).toFixed(0) === ownBidDaysEdit / 7) ?
+                    (ownBidDaysEdit / 7 === 1) ? ownBidDaysEdit / 7 + ' week' : ownBidDaysEdit / 7 + ' weeks' :
+                    (ownBidDaysEdit === 1) ? ownBidDaysEdit + ' day' : ownBidDaysEdit + ' days'}</div>
+                <button onClick={()=>setOwnBidEditing(prev=>!prev)} className={'listing_bids_ownBid__btn'}>Edit</button>
+            </div>}
             {(bids.length!==0) ? <>
             {(own_bid._id) && <div className={'listing_bids_ownBid'}>
                 <img className={'listing-bids-item__img'} src={(own_bid.profilePictureURL) || NOLOGO} alt="logo"/>
@@ -285,7 +316,7 @@ const Bids = (props) => {
                                 (item.daysCount === 1) ? item.daysCount + ' day' : item.daysCount + ' days'}</div>
                             {(item.note) && <button className="listing-bids-item__note"
                                                     onClick={() => setNoteMessage(item.note)}>Note</button>}
-                            <button onClick={()=>{hire(item.bidderId)}} className={'listing-bind-item__buttons'}>Hire</button>
+                            <button onClick={()=>{openHirePopup(item.bidderId, item.biider.name)}} className={'listing-bind-item__buttons'}>Hire</button>
                             <button className={'listing-bind-item__buttons'} onClick={() => {
                                 history.push(`/${USER_ROUTE}/${item.bidderId}`)
                             }}>View
@@ -316,7 +347,7 @@ const Bids = (props) => {
                                 (item.daysCount === 1) ? item.daysCount + ' day' : item.daysCount + ' days'}</div>
                             {(item.note) && <button className="listing-bids-item__note"
                                                     onClick={() => setNoteMessage(item.note)}>Note</button>}
-                            <button onClick={()=>{hire(item.bidderId)}} className={'listing-bind-item__buttons'}>Hire</button>
+                            <button onClick={()=>{openHirePopup(item.bidderId, item.biider.name)}} className={'listing-bind-item__buttons'}>Hire</button>
                             <button className={'listing-bind-item__buttons'} onClick={() => {
                                 history.push(`/${USER_ROUTE}/${item.bidderId}`)
                             }}>View
@@ -374,14 +405,13 @@ const Bids = (props) => {
 
 
                     {(!own_bid._id && localStorage[userId] !== undefined) &&
-                    <button onClick={() => setPlaceBidActive(prevState => !prevState)} className={'placeBid'}>Place
-                        Bid</button>}
+                    <button onClick={() => setPlaceBidActive(prevState => !prevState)} className={'placeBGid'}>Place Bid</button>}
                 </div>
 
                 )}
                 </> : <>
-                <div style={{textAlign: 'center'}}>Bids are not exist yet</div>
-                {(localStorage[userId] !== undefined && localStorage.token !== undefined && props.listerId !== localStorage[userId]) &&<button onClick={() => {
+                {(!own_bid._id) && <div style={{textAlign: 'center'}}>Bids are not exist yet</div>}
+                {(localStorage[userId] !== undefined && localStorage.token !== undefined && props.listerId !== localStorage[userId] && !own_bid._id) &&<button onClick={() => {
                     setPlaceBidActive(prevState => !prevState)
                 }}  className={'placeBid'}>Place
                     Bid</button>}
