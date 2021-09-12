@@ -405,7 +405,7 @@ const Bids = (props) => {
 
 
                     {(!own_bid._id && localStorage[userId] !== undefined) &&
-                    <button onClick={() => setPlaceBidActive(prevState => !prevState)} className={'placeBGid'}>Place Bid</button>}
+                    <button onClick={() => setPlaceBidActive(prevState => !prevState)} className={'placeBid'}>Place Bid</button>}
                 </div>
 
                 )}
