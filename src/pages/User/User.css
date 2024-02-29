@@ -121,7 +121,7 @@
 .user-addSocialStripe{
     height: 30px;
     width: 1px;
-    margin: 0 10px;
+    margin: 0 15px;
     background: #fff;
 }
 .user-addSocialsBtn {
@@ -130,7 +130,6 @@
     font-size: 25px;
     cursor: pointer;
     color: #959595;
-    margin-left: 20px;
 }
 .addSocialsPopup {
     position: fixed;

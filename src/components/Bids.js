@@ -253,12 +253,15 @@ const Bids = (props) => {
                     </div>
                 </div>
             </div>}
-
-
             {/*OWN BID IF EXIST*/}
             {(bids.length === 0 && own_bid._id) && <div className={'listing_bids_ownBid'}>
                 <img className={'listing-bids-item__img'} src={(own_bid.profilePictureURL) || NOLOGO} alt="logo"/>
-                <div className={'listing_bids_ownBid__1'}>{own_bid.name}</div>
+                <div className={'listing_bids_ownBid__1'}>
+                    <div>{own_bid.name}</div>
+                    {(own_bid.twitterURL)&&<a rel="noreferrer" href={own_bid.twitterURL} target={'_blank'}>Twitter</a>}
+                    {(own_bid.twitterURL && own_bid.githubURL)&&<span style={{margin: '0 10px'}}>|</span>}
+                    {(own_bid.githubURL)&&<a rel="noreferrer" href={own_bid.githubURL} target={'_blank'}>Git Hub</a>}
+                </div>
                 <div className={'listing_bids_ownBid__2'}>${ownBidPriceEdit}</div>
                 <div
                     className={'listing_bids_ownBid__3'}>{(+(ownBidDaysEdit / 7).toFixed(0) === ownBidDaysEdit / 7) ?
@@ -269,7 +272,12 @@ const Bids = (props) => {
             {(bids.length!==0) ? <>
             {(own_bid._id) && <div className={'listing_bids_ownBid'}>
                 <img className={'listing-bids-item__img'} src={(own_bid.profilePictureURL) || NOLOGO} alt="logo"/>
-                <div className={'listing_bids_ownBid__1'}>{own_bid.name}</div>
+                <div className={'listing_bids_ownBid__1'}>
+                    <div>{own_bid.name}</div>
+                    {(own_bid.twitterURL)&&<a rel="noreferrer" href={own_bid.twitterURL} target={'_blank'}>Twitter</a>}
+                    {(own_bid.twitterURL && own_bid.githubURL)&&<span style={{margin: '0 10px'}}>|</span>}
+                    {(own_bid.githubURL)&&<a rel="noreferrer" href={own_bid.githubURL} target={'_blank'}>Git Hub</a>}
+                </div>
                 <div className={'listing_bids_ownBid__2'}>${ownBidPriceEdit}</div>
                 <div
                     className={'listing_bids_ownBid__3'}>{(+(ownBidDaysEdit / 7).toFixed(0) === ownBidDaysEdit / 7) ?
@@ -307,6 +315,8 @@ const Bids = (props) => {
                                 <div className="listing-bids-item__socials">
                                     {(item.biider.twitterURL) &&
                                 <a href={item.biider.twitterURL}>twitter</a>}
+                                    {(item.biider.githubURL) &&
+                                    <a href={item.biider.githubURL}>git Hub</a>}
                                 </div>
                             </div>
                             <div className={'listing-bids-item__price'}>${item.price}</div>

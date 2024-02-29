@@ -137,6 +137,13 @@
     align-items: center;
     position: relative;
 }
+.listing_bids_ownBid__1 a{
+    text-decoration: none;
+    color: #707070;
+}
+.listing_bids_ownBid__1 span{
+    color: #707070;
+}
 .listing_bids_ownBid__btn{
     width: 200px;
     height: 58px;
@@ -550,6 +557,12 @@
     .placeBidPopup-window .inputGroup .btns input{
         width: 100px;
     }
+    .listing_bids_ownBid__3{
+        left: 60%;
+    }
+    .listing_bids_ownBid__2{
+        left: 43%;
+    }
 }
 @media screen and (max-width: 1300px){
     .listing-bids-item__shortInfo{
@@ -626,6 +639,17 @@
         display: flex;
         align-items: center;
         transform: none
+    }
+    .listing_bids_ownBid__btn{
+        bottom: 0;
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .listing_bids_ownBid__3{
+        left: 80%;
+    }
+    .listing_bids_ownBid__2{
+        left: 65%;
     }
 }
 @media screen and (max-width: 900px){
